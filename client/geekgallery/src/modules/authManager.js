@@ -1,5 +1,6 @@
 import firebase from "firebase/app";
 import "firebase/auth";
+import { Navigate } from "react-router-dom";
 
 const _apiUrl = "/api/userprofile";
 
@@ -50,6 +51,7 @@ export const login = (email, pw) => {
 
 export const logout = () => {
     firebase.auth().signOut()
+    Navigate(`/login`)
 };
 
 
@@ -58,9 +60,12 @@ export const register = (userProfile, password) => {
         .then((createResponse) => _saveUser({
             ...userProfile,
             firebaseUserId: createResponse.user.uid
-        }));
+        }).then(() => _onLoginStatusChangedHandler(true)));
 };
 
+let _onLoginStatusChangedHandler = () => {
+    throw new Error("There's no login status change handler. Did you forget to call 'onLoginStatusChange()'?")
+};
 
 export const onLoginStatusChange = (onLoginStatusChangeHandler) => {
     firebase.auth().onAuthStateChanged((user) => {

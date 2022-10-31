@@ -6,11 +6,8 @@ import { register } from "../modules/authManager";
 export default function Register() {
     const navigate = useNavigate();
 
-    const [firstName, setFirstName] = useState();
-    const [lastName, setLastName] = useState();
-    const [displayName, setDisplayName] = useState();
+    const [name, setName] = useState();
     const [email, setEmail] = useState();
-    const [imageLocation, setImageLocation] = useState();
     const [password, setPassword] = useState();
     const [confirmPassword, setConfirmPassword] = useState();
 
@@ -20,11 +17,8 @@ export default function Register() {
             alert("Passwords don't match. Do better.");
         } else {
             const userProfile = {
-                firstName,
-                lastName,
-                displayName,
-                imageLocation,
-                email,
+                name,
+                email
             };
             register(userProfile, password).then(() => navigate("/"));
         }
@@ -33,22 +27,6 @@ export default function Register() {
     return (
         <Form onSubmit={registerClick}>
             <fieldset>
-                <FormGroup>
-                    <Label htmlFor="firstName">First Name</Label>
-                    <Input
-                        id="firstName"
-                        type="text"
-                        onChange={(e) => setFirstName(e.target.value)}
-                    />
-                </FormGroup>
-                <FormGroup>
-                    <Label htmlFor="lastName">Last Name</Label>
-                    <Input
-                        id="lastName"
-                        type="text"
-                        onChange={(e) => setLastName(e.target.value)}
-                    />
-                </FormGroup>
                 <FormGroup>
                     <Label htmlFor="displayName">Display Name</Label>
                     <Input
@@ -63,14 +41,6 @@ export default function Register() {
                         id="email"
                         type="text"
                         onChange={(e) => setEmail(e.target.value)}
-                    />
-                </FormGroup>
-                <FormGroup>
-                    <Label htmlFor="imageLocation">Profile Image URL</Label>
-                    <Input
-                        id="imageLocation"
-                        type="text"
-                        onChange={(e) => setImageLocation(e.target.value)}
                     />
                 </FormGroup>
                 <FormGroup>

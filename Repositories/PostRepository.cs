@@ -226,11 +226,10 @@ namespace GeekGallery.Repositories
                             UserId, Title, ImageURL, CreationDate, Caption, IsPublic, CategoryId )
                         OUTPUT INSERTED.ID
                         VALUES (
-                            @UserId, @Title, @ImageURL, @CreationDate, @Caption, @IsPublic, @CategoryId)";
+                            @UserId, @Title, @ImageURL, CURRENT_TIMESTAMP, @Caption, @IsPublic, @CategoryId)";
                     cmd.Parameters.AddWithValue("@UserId", post.UserId);
                     cmd.Parameters.AddWithValue("@Title", post.Title);
                     cmd.Parameters.AddWithValue("@ImageURL", post.ImageURL);
-                    cmd.Parameters.AddWithValue("@CreationDate", post.CreationDate);
                     cmd.Parameters.AddWithValue("@Caption", post.Caption);
                     cmd.Parameters.AddWithValue("@IsPublic", post.IsPublic);
                     cmd.Parameters.AddWithValue("@CategoryId", post.CategoryId);

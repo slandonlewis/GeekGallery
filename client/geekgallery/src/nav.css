@@ -1,0 +1,39 @@
+body {
+    margin: 0%;
+}
+
+.navbar-div {
+    background-color: rgb(0, 2, 5);
+    color: aliceblue;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    padding: 0 1rem;
+    margin-bottom: 10px;
+}
+
+.navtitle {
+    color: rgb(44, 190, 122);
+    font-family: 'Bebas Neue', cursive;
+    font-size: 40px;
+    margin-left: 30px;
+    text-decoration: none;
+    float: left;
+}
+
+.navbar-items {
+    color: inherit;
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    float: right;
+}
+
+.navitem {
+    text-decoration: none;
+    font-family: 'Bebas Neue', cursive;
+    color: aliceblue;
+    font-size: 25px;
+    transition: transform .1s;
+}

@@ -103,7 +103,6 @@ namespace GeekGallery.Repositories
                             FireBaseUserId = DbUtils.GetString(reader, "FirebaseUserId")
                         };
                     }
-                    reader.Close();
 
                     return userProfile;
                 }

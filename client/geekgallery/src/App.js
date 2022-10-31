@@ -4,6 +4,8 @@ import ApplicationViews from "./components/ApplicationViews";
 import { onLoginStatusChange } from "./modules/authManager";
 import Register from './components/Register';
 import Login from './components/Login';
+import Header from "./components/Header";
+
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(null);
@@ -13,11 +15,12 @@ function App() {
   }, []);
 
   if (isLoggedIn === null) {
-    return <Login />;
+    return null;
   }
 
   return (
     <Router>
+      <Header isLoggedIn={isLoggedIn} />
       <ApplicationViews isLoggedIn={isLoggedIn} />
     </Router>
   );
