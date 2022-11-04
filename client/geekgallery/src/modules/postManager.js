@@ -10,6 +10,10 @@ export const getAllPosts = () => {
     })
 }
 
+export const getFirst10MostRecentPosts = () => {
+
+}
+
 export const getCurrentUsersPosts = (userId) => {
     return getToken().then((token) => {
         return fetch(`/api/Post/myposts?UserId=${userId}`, {
@@ -31,8 +35,14 @@ export function getById(id) {
 }
 
 export function getPostComments(id) {
-    return fetch(`/api/Comment/${id}/comments`)
-        .then(resp => resp.json())
+    return getToken().then((token) => {
+        return fetch(`/api/Comment/${id}/comments`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+            .then(resp => resp.json())
+    })
 }
 
 export function addPost(post) {
@@ -69,6 +79,44 @@ export function updatePost(post) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(post)
+        })
+    })
+}
+
+export function addComment(comment) {
+    return getToken().then((token) => {
+        return fetch(`/api/Comment`, {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(comment)
+        })
+    })
+}
+
+export function deleteComment(id) {
+    return getToken().then((token) => {
+        return fetch(`/api/Comment/${id}`, {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+    })
+}
+
+export function updateComment(comment) {
+    return getToken().then((token) => {
+        return fetch(`/api/Comment/${comment.id}`, {
+            method: 'PUT',
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(comment)
         })
     })
 }

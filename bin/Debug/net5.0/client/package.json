@@ -1,6 +1,8 @@
 {
   "dependencies": {
+    "express": "^4.18.2",
     "firebase": "^8.7.1",
+    "imagekit": "^4.1.1",
     "react-router-dom": "^6.4.2"
   }
 }

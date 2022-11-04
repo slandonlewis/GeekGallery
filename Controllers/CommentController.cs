@@ -1,5 +1,6 @@
 ﻿using GeekGallery.Models;
 using GeekGallery.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,6 +16,7 @@ namespace GeekGallery.Controllers
             _commentRepository = commentRepository;
         }
 
+        [Authorize]
         [HttpGet("{postId}/comments")]
         public IActionResult GetPostComments(int postId)
         {
@@ -22,12 +24,14 @@ namespace GeekGallery.Controllers
             return Ok(comments);
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
             return Ok(_commentRepository.GetById(id));
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult Create(Comment comment)
         {
@@ -35,6 +39,7 @@ namespace GeekGallery.Controllers
             return CreatedAtAction("Get", new { id = comment.Id }, comment);
         }
 
+        [Authorize]
         [HttpPut("{id}")]
         public IActionResult Put(int id, Comment comment)
         {
@@ -47,6 +52,7 @@ namespace GeekGallery.Controllers
             return NoContent();
         }
 
+        [Authorize]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

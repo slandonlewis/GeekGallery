@@ -28,7 +28,7 @@ const _saveUser = (userProfile) => {
 
 
 
-export const getToken = () => firebase.auth().currentUser.getIdToken();
+export const getToken = () => firebase?.auth()?.currentUser?.getIdToken();
 
 
 export const login = (email, pw) => {
@@ -60,11 +60,7 @@ export const register = (userProfile, password) => {
         .then((createResponse) => _saveUser({
             ...userProfile,
             firebaseUserId: createResponse.user.uid
-        }).then(() => _onLoginStatusChangedHandler(true)));
-};
-
-let _onLoginStatusChangedHandler = () => {
-    throw new Error("There's no login status change handler. Did you forget to call 'onLoginStatusChange()'?")
+        }));
 };
 
 export const onLoginStatusChange = (onLoginStatusChangeHandler) => {

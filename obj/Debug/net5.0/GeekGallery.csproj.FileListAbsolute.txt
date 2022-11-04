@@ -53,3 +53,5 @@ C:\Users\terro\source\repos\GeekGallery\GeekGallery\bin\Debug\net5.0\client\geek
 C:\Users\terro\source\repos\GeekGallery\GeekGallery\bin\Debug\net5.0\client\geekgallery\public\manifest.json
 C:\Users\terro\source\repos\GeekGallery\GeekGallery\bin\Debug\net5.0\client\package-lock.json
 C:\Users\terro\source\repos\GeekGallery\GeekGallery\bin\Debug\net5.0\client\package.json
+C:\Users\terro\source\repos\GeekGallery\GeekGallery\bin\Debug\net5.0\package-lock.json
+C:\Users\terro\source\repos\GeekGallery\GeekGallery\bin\Debug\net5.0\package.json

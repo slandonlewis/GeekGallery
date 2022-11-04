@@ -1,0 +1,19 @@
+fieldset {
+    color: aquamarine;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 22px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.input {
+    background-color: rgb(37, 37, 37);
+    border-color: rgb(31, 161, 100);
+    border-style: double;
+    border-radius: 5px;
+    color: aquamarine;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    padding: 5px;
+}

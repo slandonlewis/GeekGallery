@@ -16,10 +16,13 @@ export default function EditPost() {
     const submit = () => {
         if (post.title === "") {
             setError('Please enter a title.')
-            console.log(id);
         }
         else if (post.caption === "") {
             setError('Please enter a caption.')
+        } else if (post.category === "") {
+            setError('Please select a category.')
+        } else if (post.privacy === null) {
+            setError('Please select a privacy setting.')
         }
         else {
             updatePost({ ...post }).then(() => navigate(`/gallery`))
@@ -66,6 +69,7 @@ export default function EditPost() {
                         copy.category = evt.target.value
                         setPost(copy)
                     }}>
+                <option value="">Select a Category...</option>
                 {categories.map(category => <option value={category.id}>{category.name}</option>)}
             </select>
             <Label>Privacy: </Label>
@@ -84,6 +88,7 @@ export default function EditPost() {
                         setPost(copy)
                     }
                 }>
+                <option value="">Select Setting...</option>
                 <option value="public">Public</option>
                 <option value="private">Private</option>
             </select>

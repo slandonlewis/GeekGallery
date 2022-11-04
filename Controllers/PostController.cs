@@ -38,6 +38,13 @@ namespace GeekGallery.Controllers
             return Ok(_postRepository.GetMyPosts(UserId));
         }
 
+        //[Authorize]
+        [HttpGet("posts/{categoryName}")]
+        public IActionResult GetByCategory(string categoryName)
+        {
+            return Ok(_postRepository.GetPostsByCategory(categoryName));
+        }
+
         [Authorize]
         [HttpPost]
         public IActionResult Create(Post post)

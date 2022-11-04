@@ -123,7 +123,7 @@ namespace GeekGallery.Repositories
 
                     DbUtils.AddParameter(cmd, "@Name", userProfile.Name);
                     DbUtils.AddParameter(cmd, "@Email", userProfile.Email);
-                    DbUtils.AddParameter(cmd, "@DateCreated", userProfile.FireBaseUserId);
+                    DbUtils.AddParameter(cmd, "@FireBaseUserId", userProfile.FireBaseUserId);
 
                     userProfile.Id = (int)cmd.ExecuteScalar();
                 }

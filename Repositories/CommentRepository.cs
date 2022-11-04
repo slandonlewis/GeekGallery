@@ -143,7 +143,7 @@ namespace GeekGallery.Repositories
                                         OUTPUT inserted.Id
                                         VALUES (@content, @userId, @postId)";
                     DbUtils.AddParameter(cmd, "@postId", comment.PostId);
-                    DbUtils.AddParameter(cmd, "@userProfileId", comment.UserId);
+                    DbUtils.AddParameter(cmd, "@userId", comment.UserId);
                     DbUtils.AddParameter(cmd, "@content", comment.Content);
                     comment.Id = (int)cmd.ExecuteScalar();
                 }

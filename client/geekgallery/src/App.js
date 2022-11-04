@@ -7,6 +7,7 @@ import Login from './components/Login';
 import Header from "./components/Header";
 
 
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(null);
 
@@ -15,7 +16,7 @@ function App() {
   }, []);
 
   if (isLoggedIn === null) {
-    return null;
+    return null
   }
 
   return (

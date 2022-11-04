@@ -3,11 +3,13 @@ import { getCurrentUsersPosts } from "../modules/postManager";
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { useNavigate, Link } from "react-router-dom";
 import { getUser } from "../modules/userProfileManager";
+import { IKImage } from 'imagekitio-react';
 
 export default function MyGallery() {
     const [currentUser, setCurrentUser] = useState({})
     const [posts, setPosts] = useState([])
     const navigate = useNavigate()
+    const urlEndpoint = 'https://ik.imagekit.io/jispgtxyu'
     useEffect(() => {
         getUser().then((user) => setCurrentUser(user))
     }, [])
@@ -32,7 +34,13 @@ export default function MyGallery() {
             {posts.map((post) =>
                 <div className="PostCard" key={post.id}>
                     <h3>{post.title}</h3>
-                    <img src={post.imageURL} height={250} width={400}></img><br></br>
+                    {/* <img src={post.imageURL} height={250} width={400}></img><br></br> */}
+                    <IKImage urlEndpoint={urlEndpoint}
+                        path={post.imageURL}
+                        transformation={[{
+                            height: 250,
+                            width: 400
+                        }]} /><br></br>
                     <Link to={`/post/details/${post.id}`}><button>View</button></Link>
                     <Link to={`/post/edit/${post.id}`}><button>Edit</button></Link>
                 </div>)}

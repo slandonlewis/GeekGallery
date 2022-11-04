@@ -4,6 +4,7 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { addPost } from "../modules/postManager";
 import getAllCategories from "../modules/categoryManager";
 import { getUser } from "../modules/userProfileManager";
+import { IKImage, IKContext, IKUpload } from 'imagekitio-react';
 
 export default function AddPost() {
     const [categories, setCategories] = useState([])
@@ -15,8 +16,24 @@ export default function AddPost() {
         caption: "",
         category: "",
         imageURL: "",
-        isPublic: null
+        isPublic: true
     })
+
+    /* ImageKit stuff */
+    const urlEndpoint = "https://ik.imagekit.io/jispgtxyu";
+    const publicKey = 'public_uMLss766YJYyVVpuCOUgRukV7/E=';
+    const authenticationEndpoint = 'http://localhost:3001/auth';
+    const onError = err => {
+        console.log("Error", err);
+    };
+
+    const onSuccess = res => {
+        console.log("Success", res);
+        const copy = { ...post }
+        copy.imageURL = res.filePath
+        setPost(copy)
+    };
+    /* ImageKit stuff END */
 
     useEffect(() => {
         getUser().then((user) => setCurrentUser(user))
@@ -29,7 +46,7 @@ export default function AddPost() {
             caption: post.caption,
             category: post.category,
             imageURL: post.imageURL,
-            privacy: post.isPublic
+            isPublic: post.isPublic
         }
 
         if (post.title === "") {
@@ -72,13 +89,29 @@ export default function AddPost() {
                     }
                 }></Input>
             <Label>Image File: </Label>
-            <Input id="imageEl" type="text" placeholder="Enter Image URL"
+
+            {/* <Input id="imageEl" type="text" placeholder="Enter Image URL"
                 onChange={
                     (evt) => {
                         const copy = { ...post }
                         copy.imageURL = evt.target.value
                         setPost(copy)
-                    }}></Input>
+
+                    }}>
+            </Input> */}
+            {/* ImageKit Stuff */}
+            <IKContext
+                publicKey={publicKey}
+                urlEndpoint={urlEndpoint}
+                authenticationEndpoint={authenticationEndpoint}
+            >
+                <IKUpload
+                    fileName="test-upload.png"
+                    onError={onError}
+                    onSuccess={onSuccess}
+                ></IKUpload>
+            </IKContext>
+
             <Label>Caption: </Label>
             <textarea id="captionField" rows={4} cols={50} placeholder="Brief description of your artwork..."
                 onChange={

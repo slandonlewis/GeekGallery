@@ -213,6 +213,66 @@ namespace GeekGallery.Repositories
             }
         }
 
+        public List<Post> GetPostsByCategory(string categoryName)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        SELECT p.Id, p.UserId, p.Title, p.ImageURL, p.CreationDate, p.Caption, 
+                            p.IsPublic, p.CategoryId, 
+                            ca.Id, ca.Name AS CategoryName,
+                            up.Id, up.FireBaseUserId, up.Name AS UserName, up.Email,
+                            co.Id AS CommentId, co.Content, co.UserId, co.PostId
+                          FROM Post p
+                            LEFT JOIN UserProfile up on p.UserId = up.Id
+                            LEFT JOIN Category ca on p.CategoryId = ca.Id
+                            LEFT JOIN Comment co on co.PostId = p.Id
+                          WHERE ca.Name = @CategoryName
+                            ORDER BY p.CreationDate;";
+                    DbUtils.AddParameter(cmd, "@CategoryName", categoryName);
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+
+                        var posts = new List<Post>();
+                        while (reader.Read())
+                        {
+                            var postId = DbUtils.GetInt(reader, "Id");
+
+                            var existingPost = posts.FirstOrDefault(p => p.Id == postId);
+                            if (existingPost == null)
+                            {
+                                existingPost = new Post()
+                                {
+                                    Id = postId,
+                                    UserId = DbUtils.GetInt(reader, "UserId"),
+                                    CategoryId = DbUtils.GetInt(reader, "CategoryId"),
+                                    Title = DbUtils.GetString(reader, "Title"),
+                                    ImageURL = DbUtils.GetString(reader, "ImageURL"),
+                                    CreationDate = DbUtils.GetDateTime(reader, "CreationDate"),
+                                    Caption = DbUtils.GetString(reader, "Caption"),
+                                    IsPublic = (bool)DbUtils.GetBoolean(reader, "IsPublic"),
+                                    UserProfile = new UserProfile()
+                                    {
+                                        Id = DbUtils.GetInt(reader, "UserId"),
+                                        FireBaseUserId = DbUtils.GetString(reader, "FireBaseUserId"),
+                                        Name = DbUtils.GetString(reader, "UserName"),
+                                        Email = DbUtils.GetString(reader, "Email")
+                                    }
+                                };
+
+                                posts.Add(existingPost);
+                            }
+                        }
+
+                        return posts;
+                    }
+                }
+            }
+        }
+
         // needs to set creation date to current time
         public void Add(Post post)
         {

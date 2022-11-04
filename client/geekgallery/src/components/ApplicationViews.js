@@ -20,6 +20,7 @@ export default function ApplicationViews({ isLoggedIn }) {
                     <Route path="register" element={<Register />} />
                     <Route path="discover" element={<Discover />} />
                     <Route path="gallery" element={<MyGallery />} />
+                    <Route path="inspiration" element={<h1>Feature Coming Soon!</h1>} />
                     <Route path="post">
                         <Route path="details">
                             <Route path=":id" element={<ViewPost />}></Route>

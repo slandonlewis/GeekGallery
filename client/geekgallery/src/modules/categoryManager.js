@@ -1,5 +1,13 @@
+import { getToken } from "./authManager"
+
 const api = "/api/category"
 
 export default function getAllCategories() {
-    return fetch(`${api}`).then(res => res.json())
+    return getToken().then((token) => {
+        return fetch(`${api}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            }
+        }).then(res => res.json())
+    })
 }

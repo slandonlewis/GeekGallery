@@ -8,6 +8,7 @@ namespace GeekGallery.Repositories
         List<Post> GetAllPosts();
         Post GetByIdWithComments(int id);
         List<Post> GetMyPosts(int userProfileId);
+        List<Post> GetPostsByCategory(string categoryName);
         void Add(Post post);
         void Update(Post post);
         void Delete(int id);

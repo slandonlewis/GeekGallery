@@ -3,6 +3,9 @@ Button {
   background-color: #db534b !important;
   border: none;
   margin-top: 10px;
+  margin-right: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .LoginPanel {
@@ -14,6 +17,10 @@ Button {
   padding: 2pc;
   padding-top: 1pc;
   box-shadow: 0px 2px #b8b8b7;
+}
+
+.icons {
+  padding: 5px;
 }
 
 .LoginButton {
@@ -39,31 +46,53 @@ Button {
 }
 
 .PostCard {
-  color: rgb(31, 70, 57);
+  color: rgb(3, 211, 145);
+  font-family: 'Bebas Neue', cursive;
+  font-size: 25px;
   display: flex;
   display: inline-block;
   flex-direction: column;
   padding: 10px;
-  background-color: rgb(107, 180, 156);
+  background-color: rgb(51, 105, 87);
+  margin: 5px;
 }
 
 .PostDisplay {
   background-color: rgb(4, 44, 31);
   color: aquamarine;
   display: flex;
-  padding-left: 15px;
-  /* justify-content: space-between; */
+  /* padding-left: 25px; */
+  text-align: center;
+  justify-content: space-around;
 }
+
+/* .PostView {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.808);
+  justify-content: center;
+  justify-content: space-around;
+} */
 
 .CommentSection {
   color: rgb(0, 34, 15);
   background-color: rgb(66, 66, 66);
   padding: 5px;
+  height: 550px;
+  overflow-y: auto;
+}
+
+.CommentField {
+  background-color: #686868;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
 }
 
 .CommentCard {
   display: flex;
-  background-color: rgb(0, 206, 137);
+  justify-content: space-between;
+  background-color: rgb(15, 124, 88);
   padding: 5px;
   margin: 5px;
 }
@@ -74,4 +103,27 @@ Button {
   background-color: rgb(11, 80, 57);
   flex-direction: column;
   padding: 20px;
+}
+
+.postList {
+  padding: 15px;
+  background-color: rgba(15, 73, 54, 0.575);
+  text-align: center;
+  height: 650px;
+  overflow-y: auto;
+}
+
+h1 {
+  margin-left: 20px;
+}
+
+h2 {
+  margin-left: 40px;
+}
+
+p,
+label {
+  color: rgb(57, 255, 189);
+  font-family: 'Teko', sans-serif;
+  font-size: 23px;
 }

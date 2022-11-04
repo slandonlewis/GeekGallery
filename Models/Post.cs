@@ -15,5 +15,6 @@ namespace GeekGallery.Models
         public bool IsPublic { get; set; }
         public UserProfile UserProfile { get; set; }
         public List<Comment> Comments { get; set; }
+        public string CategoryName { get; set; }
     }
 }

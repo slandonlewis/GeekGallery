@@ -46,7 +46,7 @@ export default function Header({ isLoggedIn }) {
                   <NavLink className='navitem' tag={RRNavLink} to="/create">Share</NavLink>
                 </NavItem>
                 <NavItem>
-                  <a aria-current="page" className="nav-link navitem"
+                  <a href="/login" aria-current="page" className="nav-link navitem"
                     style={{ cursor: "pointer" }} onClick={logout}>Logout</a>
                 </NavItem>
               </>

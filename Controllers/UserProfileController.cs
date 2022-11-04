@@ -35,6 +35,7 @@ namespace GeekGallery.Controllers
         //    return Ok(userProfile);
         //}
 
+        [Authorize]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
@@ -42,6 +43,7 @@ namespace GeekGallery.Controllers
             return NoContent();
         }
 
+        [Authorize]
         [HttpGet("{firebaseUserId}")]
         public IActionResult GetByFirebaseUserId(string firebaseUserId)
         {
@@ -53,6 +55,7 @@ namespace GeekGallery.Controllers
             return Ok(userProfile);
         }
 
+        [Authorize]
         [HttpGet("myProfile")]
         public IActionResult MyProfile()
         {
@@ -65,6 +68,7 @@ namespace GeekGallery.Controllers
             return Ok(userProfile);
         }
 
+        [Authorize]
         [HttpGet("DoesUserExist/{firebaseUserId}")]
         public IActionResult DoesUserExist(string firebaseUserId)
         {
